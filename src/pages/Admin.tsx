@@ -31,6 +31,7 @@ type AdminFormData = z.infer<typeof adminProjectSchema>;
 
 const AdminPage = () => {
   const { user, signOut } = useAuth();
+  const [activeTab, setActiveTab] = useState<"projects" | "visitors">("projects");
   const [projects, setProjects] = useState<Project[]>(mockProjects);
   const [showForm, setShowForm] = useState(false);
   const [editTarget, setEditTarget] = useState<Project | null>(null);
