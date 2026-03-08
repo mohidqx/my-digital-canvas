@@ -516,6 +516,8 @@ const AdminPage = () => {
       case "overview":   return <Overview projects={mockProjects} onTabChange={setActiveTab} />;
       case "analytics":  return <AdminAnalytics onCountryFilter={handleCountryFilter} />;
       case "visitors":   return <VisitorLogs countryFilter={visitorCountryFilter} />;
+      case "activity":   return <AdminActivityLogs />;
+      case "audit":      return <AdminAuditTrail />;
       case "projects":   return <ProjectsTab />;
       case "security":   return <AdminSecurity />;
       case "terminal":   return <AdminTerminal />;
