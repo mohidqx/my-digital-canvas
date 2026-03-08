@@ -166,4 +166,31 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  /* Hero background glow */
+  .bg-hero-glow {
+    background: radial-gradient(ellipse 80% 60% at 50% 0%, hsl(261 87% 50% / 0.12) 0%, transparent 70%);
+  }
+
+  /* Pulse glow animation on avatar */
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 15px hsl(261 87% 50% / 0.3), 0 0 30px hsl(261 87% 50% / 0.1); }
+    50% { box-shadow: 0 0 25px hsl(261 87% 50% / 0.5), 0 0 50px hsl(162 72% 46% / 0.2); }
+  }
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  /* Small shadow utilities */
+  .shadow-teal-sm {
+    box-shadow: 0 0 8px hsl(162 72% 46% / 0.5);
+  }
+  .shadow-glow-sm {
+    box-shadow: 0 0 15px hsl(261 87% 50% / 0.4);
+  }
+
+  /* Scrollbar thin */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
 }
