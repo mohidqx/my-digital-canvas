@@ -22,6 +22,7 @@ import { AdminNetworkMonitor } from "@/components/admin/AdminNetworkMonitor";
 import { AdminSystemHealth } from "@/components/admin/AdminSystemHealth";
 import { AdminFileVault } from "@/components/admin/AdminFileVault";
 import { AdminSettings } from "@/components/admin/AdminSettings";
+import { AdminBugBounty } from "@/components/admin/AdminBugBounty";
 import { NotificationBell } from "@/components/admin/NotificationBell";
 import { useAuth } from "@/hooks/useAuth";
 import { useTheme } from "@/lib/theme";

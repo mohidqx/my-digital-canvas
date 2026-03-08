@@ -262,7 +262,11 @@ function VisitorDrawer({ v, onClose }: { v: VisitorLog; onClose: () => void }) {
 }
 
 // ── Main component ────────────────────────────────────────────────────────────
-export function VisitorLogs() {
+interface VisitorLogsProps {
+  countryFilter?: string | null;
+}
+
+export function VisitorLogs({ countryFilter }: VisitorLogsProps) {
   const [logs, setLogs] = useState<VisitorLog[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
