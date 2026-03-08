@@ -1,6 +1,4 @@
 import { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   LayoutDashboard, Eye, LogOut, Code2, ExternalLink,
@@ -8,7 +6,7 @@ import {
   Server, FolderLock, Settings, Layers, Github,
   Star, Plus, CheckCircle2, AlertCircle, X, Edit3, Trash2,
   Activity, Zap, Globe, ChevronRight, Menu, Ghost,
-  TrendingUp, Users, Database
+  TrendingUp, Users, Database, Sun, Moon
 } from "lucide-react";
 import { z } from "zod";
 import { Navigate } from "react-router-dom";
@@ -22,7 +20,9 @@ import { AdminNetworkMonitor } from "@/components/admin/AdminNetworkMonitor";
 import { AdminSystemHealth } from "@/components/admin/AdminSystemHealth";
 import { AdminFileVault } from "@/components/admin/AdminFileVault";
 import { AdminSettings } from "@/components/admin/AdminSettings";
+import { NotificationBell } from "@/components/admin/NotificationBell";
 import { useAuth } from "@/hooks/useAuth";
+import { useTheme } from "@/lib/theme";
 import { mockProjects } from "@/lib/mockData";
 import type { Project } from "@/lib/schemas";
 import { addDocument, deleteDocument } from "@/lib/firebase";
