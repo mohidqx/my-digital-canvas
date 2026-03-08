@@ -172,31 +172,15 @@ export function GhostChatPortal() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.92, y: 20 }}
             transition={{ type: "spring", stiffness: 320, damping: 32 }}
-            className={`fixed z-50 flex flex-col overflow-hidden ${
+          className={`fixed z-50 flex flex-col overflow-hidden ${
               isMaximized ? "inset-4 rounded-2xl" : "bottom-6 right-6 rounded-2xl"
             }`}
-            style={isMaximized ? undefined : {
-              width: currentSize.w,
-              height: currentSize.h,
-              background: "hsl(0 0% 4%)",
+            style={{
+              ...(isMaximized ? {} : { width: currentSize.w, height: currentSize.h }),
+              background: "hsl(var(--background))",
               border: "1px solid hsl(261 87% 50% / 0.2)",
               boxShadow: "0 0 60px hsl(261 87% 50% / 0.12), 0 30px 80px rgba(0,0,0,0.8)",
             }}
-            {...(!isMaximized ? {
-              style: {
-                width: currentSize.w,
-                height: currentSize.h,
-                background: "hsl(0 0% 4%)",
-                border: "1px solid hsl(261 87% 50% / 0.2)",
-                boxShadow: "0 0 60px hsl(261 87% 50% / 0.12), 0 30px 80px rgba(0,0,0,0.8)",
-              }
-            } : {
-              style: {
-                background: "hsl(0 0% 4%)",
-                border: "1px solid hsl(261 87% 50% / 0.2)",
-                boxShadow: "0 0 60px hsl(261 87% 50% / 0.12), 0 30px 80px rgba(0,0,0,0.8)",
-              }
-            })}
           >
             {/* Title bar */}
             <div
