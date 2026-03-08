@@ -96,8 +96,8 @@ const AdminPage = () => {
     setEditTarget(project);
     reset({
       ...project,
-      techStack: project.techStack.join(", ") as unknown as string[],
-    });
+      techStack: project.techStack.join(", "),
+    } as AdminFormData);
     setShowForm(true);
   };
 
