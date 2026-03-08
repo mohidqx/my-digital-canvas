@@ -127,9 +127,19 @@ const AdminPage = () => {
 
         {/* Nav */}
         <nav className="flex-1 p-4 space-y-1">
-          <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium bg-primary/10 text-primary">
+          <button
+            onClick={() => setActiveTab("projects")}
+            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === "projects" ? "bg-primary/10 text-primary" : "text-muted-foreground hover:text-foreground hover:bg-muted/50"}`}
+          >
             <LayoutDashboard className="w-4 h-4" />
             Dashboard
+          </button>
+          <button
+            onClick={() => setActiveTab("visitors")}
+            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all ${activeTab === "visitors" ? "bg-secondary/10 text-secondary" : "text-muted-foreground hover:text-foreground hover:bg-muted/50"}`}
+          >
+            <Eye className="w-4 h-4" />
+            Visitor Logs
           </button>
           <a href="/" className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all">
             <ExternalLink className="w-4 h-4" />
