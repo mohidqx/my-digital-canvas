@@ -494,25 +494,32 @@ const AdminPage = () => {
   const { theme, toggleTheme } = useTheme();
   const [activeTab, setActiveTab] = useState<TabId>("overview");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [visitorCountryFilter, setVisitorCountryFilter] = useState<string | null>(null);
 
   if (!user) return <Navigate to="/login" replace />;
 
   const currentTab = TABS.find((t) => t.id === activeTab)!;
 
+  const handleCountryFilter = (code: string | null) => {
+    setVisitorCountryFilter(code);
+    setActiveTab("visitors");
+  };
+
   const renderContent = () => {
     switch (activeTab) {
-      case "overview":  return <Overview projects={mockProjects} onTabChange={setActiveTab} />;
-      case "analytics": return <AdminAnalytics />;
-      case "visitors":  return <VisitorLogs />;
-      case "projects":  return <ProjectsTab />;
-      case "security":  return <AdminSecurity />;
-      case "terminal":  return <AdminTerminal />;
-      case "network":   return <AdminNetworkMonitor />;
-      case "vault":     return <AdminFileVault />;
-      case "health":    return <AdminSystemHealth />;
-      case "notes":     return <AdminNotes />;
-      case "settings":  return <AdminSettings />;
-      default:          return null;
+      case "overview":   return <Overview projects={mockProjects} onTabChange={setActiveTab} />;
+      case "analytics":  return <AdminAnalytics onCountryFilter={handleCountryFilter} />;
+      case "visitors":   return <VisitorLogs countryFilter={visitorCountryFilter} />;
+      case "projects":   return <ProjectsTab />;
+      case "security":   return <AdminSecurity />;
+      case "terminal":   return <AdminTerminal />;
+      case "network":    return <AdminNetworkMonitor />;
+      case "vault":      return <AdminFileVault />;
+      case "health":     return <AdminSystemHealth />;
+      case "notes":      return <AdminNotes />;
+      case "bugbounty":  return <AdminBugBounty />;
+      case "settings":   return <AdminSettings />;
+      default:           return null;
     }
   };
 
