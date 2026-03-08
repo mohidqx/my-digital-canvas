@@ -353,6 +353,19 @@ export function VisitorLogs({ countryFilter }: VisitorLogsProps) {
         </div>
       </div>
 
+      {/* Country filter banner */}
+      {countryFilter && (
+        <motion.div
+          initial={{ opacity: 0, y: -8 }} animate={{ opacity: 1, y: 0 }}
+          className="flex items-center gap-3 px-4 py-2.5 rounded-xl border border-primary/30 bg-primary/5 text-xs"
+        >
+          <MapPin className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+          <span className="text-primary font-bold">Filtered by country: {countryCodeToFlag(countryFilter)} {logs.find((l) => l.country_code === countryFilter)?.country ?? countryFilter}</span>
+          <span className="text-muted-foreground ml-1">({filtered.length} visitors)</span>
+          <span className="ml-auto text-muted-foreground/60 text-[10px]">Change filter from Analytics → World Map</span>
+        </motion.div>
+      )}
+
       {/* Stats strip */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         {[
