@@ -7,9 +7,9 @@ interface SkillsProps {
 }
 
 const categoryLabels: Record<string, string> = {
-  frontend: "Frontend",
-  backend: "Backend",
-  devops: "DevOps & Cloud",
+  frontend: "Scripting & OSINT",
+  backend: "Offensive Security",
+  devops: "Security Tools",
   design: "Design",
   other: "Other",
 };
