@@ -63,12 +63,20 @@ export function AdminAnalytics() {
     return Object.entries(map).sort((a, b) => b[1] - a[1]).slice(0, 6).map(([name, value]) => ({ name, value }));
   })();
 
-  // Country breakdown
+  // Country breakdown with codes for world map
   const countryData = (() => {
-    const map: Record<string, number> = {};
-    logs.forEach((l) => { if (l.country) map[l.country] = (map[l.country] || 0) + 1; });
-    return Object.entries(map).sort((a, b) => b[1] - a[1]).slice(0, 8).map(([name, value]) => ({ name, value }));
+    const map: Record<string, { name: string; code: string; value: number }> = {};
+    logs.forEach((l) => {
+      if (l.country) {
+        const key = l.country;
+        if (!map[key]) map[key] = { name: l.country, code: (l as { country_code?: string | null }).country_code || l.country.substring(0, 2).toUpperCase(), value: 0 };
+        map[key].value++;
+      }
+    });
+    return Object.values(map).sort((a, b) => b.value - a.value).slice(0, 20);
   })();
+
+  const countryBarData = countryData.slice(0, 8).map((c) => ({ name: c.name, value: c.value }));
 
   // OS breakdown
   const osData = (() => {
