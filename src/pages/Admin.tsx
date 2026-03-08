@@ -88,7 +88,7 @@ const TABS: Tab[] = [
 interface ActivityItem {
   id: string;
   msg: string;
-  type: "visitor" | "bot" | "system";
+  type: "visitor" | "bot" | "chat" | "system";
   time: Date;
 }
 
@@ -96,9 +96,18 @@ function useRealtimeActivity() {
   const [items, setItems] = useState<ActivityItem[]>([]);
   const seenRef = useRef(new Set<string>());
 
+  const push = (item: ActivityItem) => {
+    setItems((prev) => {
+      if (seenRef.current.has(item.id)) return prev;
+      seenRef.current.add(item.id);
+      return [item, ...prev.slice(0, 29)];
+    });
+  };
+
   useEffect(() => {
-    const channel = supabase
-      .channel("overview-activity")
+    // ── visitor_logs ──────────────────────────────────────────
+    const visitorChannel = supabase
+      .channel("overview-visitors")
       .on("postgres_changes", { event: "INSERT", schema: "public", table: "visitor_logs" }, (payload) => {
         const row = payload.new as {
           id: string;
@@ -109,24 +118,46 @@ function useRealtimeActivity() {
           ip_address?: string | null;
           visited_at?: string;
         };
-        if (seenRef.current.has(row.id)) return;
-        seenRef.current.add(row.id);
         const flag = row.country_code ? countryCodeToFlag(row.country_code) : "🌐";
         const location = [row.city, row.country].filter(Boolean).join(", ") || "Unknown";
-        setItems((prev) => [
-          {
-            id: row.id,
-            msg: row.is_bot
-              ? `🤖 Bot detected — ${row.ip_address || "Unknown IP"}`
-              : `${flag} New visitor from ${location}`,
-            type: row.is_bot ? "bot" : "visitor",
-            time: new Date(row.visited_at || Date.now()),
-          },
-          ...prev.slice(0, 19),
-        ]);
+        push({
+          id: `v-${row.id}`,
+          msg: row.is_bot
+            ? `🤖 Bot detected — ${row.ip_address || "Unknown IP"}`
+            : `${flag} New visitor from ${location}`,
+          type: row.is_bot ? "bot" : "visitor",
+          time: new Date(row.visited_at || Date.now()),
+        });
       })
       .subscribe();
-    return () => { supabase.removeChannel(channel); };
+
+    // ── ghost_messages ────────────────────────────────────────
+    const chatChannel = supabase
+      .channel("overview-chat")
+      .on("postgres_changes", { event: "INSERT", schema: "public", table: "ghost_messages" }, (payload) => {
+        const row = payload.new as {
+          id: string;
+          room_id: string;
+          content?: string | null;
+          message_type?: string;
+          created_at?: string;
+        };
+        const preview = row.content
+          ? row.content.length > 40 ? row.content.slice(0, 40) + "…" : row.content
+          : `[${row.message_type ?? "file"}]`;
+        push({
+          id: `c-${row.id}`,
+          msg: `💬 Ghost Chat — ${preview}`,
+          type: "chat",
+          time: new Date(row.created_at || Date.now()),
+        });
+      })
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(visitorChannel);
+      supabase.removeChannel(chatChannel);
+    };
   }, []);
 
   return items;
