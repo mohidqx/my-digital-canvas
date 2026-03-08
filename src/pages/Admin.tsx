@@ -7,14 +7,26 @@ import {
   Layers, Github, ExternalLink, Star, LayoutDashboard, Code2, X
 } from "lucide-react";
 import { GlassCard } from "@/components/ui/GlassCard";
-import { projectSchema, type ProjectFormData, type Project } from "@/lib/schemas";
+import { z } from "zod";
+import type { Project } from "@/lib/schemas";
 import { mockProjects } from "@/lib/mockData";
 import { useAuth } from "@/hooks/useAuth";
 import { Navigate } from "react-router-dom";
 import { addDocument, deleteDocument } from "@/lib/firebase";
 
-// Form data uses string for techStack (raw input), then we transform on submit
-type AdminFormData = Omit<ProjectFormData, "techStack"> & { techStack: string };
+// Admin form uses raw string for techStack — transformed on submit
+const adminProjectSchema = z.object({
+  title: z.string().trim().min(2, "Title must be at least 2 characters").max(80),
+  description: z.string().trim().min(10, "Description must be at least 10 characters").max(500),
+  techStack: z.string().trim().min(1, "Add at least one technology"),
+  githubUrl: z.string().url("Must be a valid URL").optional().or(z.literal("")),
+  liveDemoUrl: z.string().url("Must be a valid URL").optional().or(z.literal("")),
+  imageUrl: z.string().url("Must be a valid URL").optional().or(z.literal("")),
+  featured: z.boolean().default(false),
+  order: z.number().default(0),
+});
+
+type AdminFormData = z.infer<typeof adminProjectSchema>;
 
 const AdminPage = () => {
   const { user, signOut } = useAuth();
@@ -31,13 +43,7 @@ const AdminPage = () => {
     reset,
     formState: { errors, isSubmitting },
   } = useForm<AdminFormData>({
-    resolver: zodResolver(
-      projectSchema.extend({ techStack: projectSchema.shape.techStack.or(
-        // allow raw string input in the form
-        // @ts-ignore
-        (projectSchema.shape.techStack as unknown)
-      ) })
-    ) as never,
+    resolver: zodResolver(adminProjectSchema),
   });
 
   if (!user) return <Navigate to="/login" replace />;
