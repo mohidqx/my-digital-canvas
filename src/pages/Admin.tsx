@@ -4,8 +4,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Plus, LogOut, Trash2, Edit3, CheckCircle2, AlertCircle,
-  Layers, Github, ExternalLink, Star, LayoutDashboard, Code2, X
+  Layers, Github, ExternalLink, Star, LayoutDashboard, Code2, X, Eye
 } from "lucide-react";
+import { VisitorLogs } from "@/components/admin/VisitorLogs";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { z } from "zod";
 import type { Project } from "@/lib/schemas";
