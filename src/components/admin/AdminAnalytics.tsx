@@ -7,13 +7,14 @@ import {
 } from "recharts";
 import {
   TrendingUp, Users, Globe, Monitor, Smartphone, Activity,
-  RefreshCw, ArrowUpRight, ArrowDownRight, Zap, MapPin
+  RefreshCw, ArrowUpRight, ArrowDownRight, Zap, MapPin, Download
 } from "lucide-react";
 import { WorldMap } from "./WorldMap";
 
 interface Log {
   visited_at: string;
   country: string | null;
+  country_code?: string | null;
   browser: string | null;
   os: string | null;
   is_mobile: boolean | null;
