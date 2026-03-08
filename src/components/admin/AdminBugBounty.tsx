@@ -475,17 +475,20 @@ function SubmitForm({ onClose, onSubmit }: { onClose: () => void; onSubmit: (r: 
   const submit = async () => {
     if (!form.title || !form.description) return;
     setSaving(true);
-    const payload: Record<string, unknown> = {
-      title: form.title, description: form.description, severity: form.severity,
-      category: form.category, reporter_name: form.reporter_name || null,
-      reporter_contact: form.reporter_contact || null, affected_url: form.affected_url || null,
+    const { data } = await supabase.from("bug_reports").insert({
+      title: form.title,
+      description: form.description,
+      severity: form.severity,
+      category: form.category,
+      reporter_name: form.reporter_name || null,
+      reporter_contact: form.reporter_contact || null,
+      affected_url: form.affected_url || null,
       steps_to_reproduce: form.steps_to_reproduce || null,
       expected_behavior: form.expected_behavior || null,
       actual_behavior: form.actual_behavior || null,
       proof_of_concept: form.proof_of_concept || null,
       cvss_score: form.cvss_score ? parseFloat(form.cvss_score) : null,
-    };
-    const { data } = await supabase.from("bug_reports").insert([payload] as Parameters<typeof supabase.from<"bug_reports">>[0] extends infer T ? never : never).select().single();
+    }).select().single();
     if (data) onSubmit(data as unknown as BugReport);
     setSaving(false);
   };
