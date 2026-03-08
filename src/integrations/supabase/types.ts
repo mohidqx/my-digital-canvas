@@ -14,7 +14,222 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      ghost_members: {
+        Row: {
+          avatar_color: string
+          codename: string
+          id: string
+          is_online: boolean
+          joined_at: string
+          last_seen: string | null
+          role: string
+          room_id: string
+          user_id: string
+        }
+        Insert: {
+          avatar_color?: string
+          codename: string
+          id?: string
+          is_online?: boolean
+          joined_at?: string
+          last_seen?: string | null
+          role?: string
+          room_id: string
+          user_id: string
+        }
+        Update: {
+          avatar_color?: string
+          codename?: string
+          id?: string
+          is_online?: boolean
+          joined_at?: string
+          last_seen?: string | null
+          role?: string
+          room_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ghost_members_room_id_fkey"
+            columns: ["room_id"]
+            isOneToOne: false
+            referencedRelation: "ghost_rooms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ghost_messages: {
+        Row: {
+          content: string | null
+          created_at: string
+          encrypted_content: string | null
+          file_name: string | null
+          file_size: number | null
+          file_type: string | null
+          file_url: string | null
+          id: string
+          is_deleted: boolean
+          message_type: string
+          metadata: Json | null
+          reactions: Json | null
+          reply_to: string | null
+          room_id: string
+          self_destruct_at: string | null
+          sender_id: string
+          updated_at: string
+        }
+        Insert: {
+          content?: string | null
+          created_at?: string
+          encrypted_content?: string | null
+          file_name?: string | null
+          file_size?: number | null
+          file_type?: string | null
+          file_url?: string | null
+          id?: string
+          is_deleted?: boolean
+          message_type?: string
+          metadata?: Json | null
+          reactions?: Json | null
+          reply_to?: string | null
+          room_id: string
+          self_destruct_at?: string | null
+          sender_id: string
+          updated_at?: string
+        }
+        Update: {
+          content?: string | null
+          created_at?: string
+          encrypted_content?: string | null
+          file_name?: string | null
+          file_size?: number | null
+          file_type?: string | null
+          file_url?: string | null
+          id?: string
+          is_deleted?: boolean
+          message_type?: string
+          metadata?: Json | null
+          reactions?: Json | null
+          reply_to?: string | null
+          room_id?: string
+          self_destruct_at?: string | null
+          sender_id?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ghost_messages_reply_to_fkey"
+            columns: ["reply_to"]
+            isOneToOne: false
+            referencedRelation: "ghost_messages"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "ghost_messages_room_id_fkey"
+            columns: ["room_id"]
+            isOneToOne: false
+            referencedRelation: "ghost_rooms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ghost_read_receipts: {
+        Row: {
+          id: string
+          message_id: string
+          read_at: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          message_id: string
+          read_at?: string
+          user_id: string
+        }
+        Update: {
+          id?: string
+          message_id?: string
+          read_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ghost_read_receipts_message_id_fkey"
+            columns: ["message_id"]
+            isOneToOne: false
+            referencedRelation: "ghost_messages"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ghost_rooms: {
+        Row: {
+          created_at: string
+          created_by: string | null
+          description: string | null
+          id: string
+          invite_code: string
+          is_active: boolean
+          max_members: number | null
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          invite_code?: string
+          is_active?: boolean
+          max_members?: number | null
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          created_by?: string | null
+          description?: string | null
+          id?: string
+          invite_code?: string
+          is_active?: boolean
+          max_members?: number | null
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      ghost_typing: {
+        Row: {
+          id: string
+          is_typing: boolean
+          room_id: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          is_typing?: boolean
+          room_id: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          id?: string
+          is_typing?: boolean
+          room_id?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ghost_typing_room_id_fkey"
+            columns: ["room_id"]
+            isOneToOne: false
+            referencedRelation: "ghost_rooms"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
