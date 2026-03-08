@@ -415,6 +415,7 @@ const AdminPage = () => {
             <p>No projects yet. Add your first one!</p>
           </div>
         )}
+        </>)}
       </div>
     </div>
   );
