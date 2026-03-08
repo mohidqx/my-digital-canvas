@@ -485,7 +485,7 @@ function SubmitForm({ onClose, onSubmit }: { onClose: () => void; onSubmit: (r: 
       proof_of_concept: form.proof_of_concept || null,
       cvss_score: form.cvss_score ? parseFloat(form.cvss_score) : null,
     };
-    const { data } = await supabase.from("bug_reports").insert(payload).select().single();
+    const { data } = await supabase.from("bug_reports").insert([payload] as Parameters<typeof supabase.from<"bug_reports">>[0] extends infer T ? never : never).select().single();
     if (data) onSubmit(data as unknown as BugReport);
     setSaving(false);
   };
