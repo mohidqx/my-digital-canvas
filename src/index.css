@@ -8,7 +8,9 @@
    ============================================================ */
 
 @layer base {
-  :root {
+  /* ── DARK MODE (default) ─────────────────────────────── */
+  :root,
+  [data-theme="dark"] {
     /* Base surfaces */
     --background: 0 0% 4%;          /* #0A0A0A */
     --foreground: 0 0% 95%;
