@@ -349,7 +349,7 @@ function ProjectsTab() {
   };
 
   const handleDelete = async (id: string) => {
-    try { await deleteDocument("projects", id); } catch {}
+    try { /* firebase removed */ } catch {}
     setProjects((prev) => prev.filter((p) => p.id !== id));
   };
 
