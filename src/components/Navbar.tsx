@@ -172,6 +172,13 @@ export function Navbar() {
               </a>
             ))}
             <a
+              href="/bug-bounty"
+              onClick={() => setOpen(false)}
+              className="px-4 py-3 rounded-xl text-sm font-medium text-secondary border border-secondary/20 bg-secondary/5"
+            >
+              Bug Bounty
+            </a>
+            <a
               href="/admin"
               className="px-4 py-3 rounded-xl text-sm font-medium text-primary border border-primary/20 bg-primary/5"
             >
