@@ -58,8 +58,14 @@ export function Navbar() {
           </a>
         ))}
         <a
+          href="/bug-bounty"
+          className="ml-2 flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium glass hover:border-secondary/30 text-muted-foreground hover:text-secondary transition-all"
+        >
+          Bug Bounty
+        </a>
+        <a
           href="/admin"
-          className="ml-2 flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium glass hover:border-primary/30 text-muted-foreground hover:text-primary transition-all"
+          className="ml-1 flex items-center gap-1.5 px-4 py-2 rounded-lg text-sm font-medium glass hover:border-primary/30 text-muted-foreground hover:text-primary transition-all"
         >
           Admin
           <ExternalLink className="w-3 h-3" />

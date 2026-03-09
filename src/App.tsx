@@ -36,6 +36,7 @@ const App = () => (
                   </ProtectedRoute>
                 }
               />
+              <Route path="/bug-bounty" element={<BugBountyPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </BrowserRouter>
