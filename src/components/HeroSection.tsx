@@ -167,15 +167,15 @@ export function HeroSection() {
           <span className="gradient-text">{mockProfile.name}</span>
         </motion.h1>
 
-        {/* Tagline */}
-        <motion.p
+        {/* Tagline — typewriter */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="text-xl md:text-2xl text-muted-foreground mb-4 font-light"
+          className="text-xl md:text-2xl mb-4 font-light min-h-[2rem] flex items-center justify-center"
         >
-          {mockProfile.tagline}
-        </motion.p>
+          <TypewriterText />
+        </motion.div>
 
         {/* Bio */}
         <motion.p
