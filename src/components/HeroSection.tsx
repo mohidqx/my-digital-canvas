@@ -102,6 +102,7 @@ export function HeroSection() {
       <div
         className="absolute inset-0 opacity-20"
         style={{
+          zIndex: 2,
           backgroundImage:
             "linear-gradient(hsl(0 0% 100% / 0.04) 1px, transparent 1px), linear-gradient(90deg, hsl(0 0% 100% / 0.04) 1px, transparent 1px)",
           backgroundSize: "60px 60px",
@@ -113,13 +114,13 @@ export function HeroSection() {
         animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         className="absolute top-20 right-20 w-96 h-96 rounded-full blur-3xl"
-        style={{ background: "radial-gradient(circle, hsl(261 87% 50% / 0.2), transparent)" }}
+        style={{ zIndex: 2, background: "radial-gradient(circle, hsl(261 87% 50% / 0.2), transparent)" }}
       />
       <motion.div
         animate={{ scale: [1.2, 1, 1.2], opacity: [0.2, 0.4, 0.2] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut", delay: 2 }}
         className="absolute bottom-20 left-20 w-80 h-80 rounded-full blur-3xl"
-        style={{ background: "radial-gradient(circle, hsl(162 72% 46% / 0.2), transparent)" }}
+        style={{ zIndex: 2, background: "radial-gradient(circle, hsl(162 72% 46% / 0.2), transparent)" }}
       />
 
       <div className="relative z-10 container mx-auto px-6 py-20 flex flex-col items-center text-center">
