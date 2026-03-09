@@ -126,7 +126,7 @@ export function ExperienceSection() {
                     className="absolute left-0 top-1 w-8 h-8 rounded-full border border-border/50 flex items-center justify-center bg-card"
                     style={{ boxShadow: `0 0 16px ${item.accentColor.replace(")", " / 0.35)")}` }}
                   >
-                    <Icon className="w-4 h-4" style={{ color: item.accentColor }} />
+                    <Icon className="w-4 h-4 text-foreground/80" />
                   </motion.div>
 
                   {/* Card */}
