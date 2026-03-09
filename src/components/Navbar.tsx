@@ -15,6 +15,7 @@ const navLinks = [
 export function Navbar() {
   const [open, setOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
+  const progress = useScrollProgress();
 
   return (
     <motion.nav
@@ -24,6 +25,18 @@ export function Navbar() {
       className="fixed top-0 inset-x-0 z-50 flex items-center justify-between px-6 py-4 glass border-t-0 rounded-none border-l-0 border-r-0 backdrop-blur-xl"
       style={{ borderBottom: "1px solid var(--glass-border)" }}
     >
+      {/* Reading progress bar */}
+      <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-border/30">
+        <motion.div
+          className="h-full origin-left"
+          style={{
+            width: `${progress}%`,
+            background: "var(--gradient-primary)",
+            boxShadow: "0 0 8px hsl(261 87% 50% / 0.6)",
+          }}
+          transition={{ ease: "linear", duration: 0 }}
+        />
+      </div>
       {/* Logo */}
       <a href="/" className="flex items-center gap-2 font-black text-lg">
         <div className="w-8 h-8 rounded-lg flex items-center justify-center"
