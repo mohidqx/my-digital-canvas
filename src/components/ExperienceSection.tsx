@@ -118,10 +118,10 @@ export function ExperienceSection() {
                   {/* Icon dot */}
                   <motion.div
                     whileHover={{ scale: 1.2 }}
-                    className="absolute left-0 top-1 w-7 h-7 rounded-full border border-border flex items-center justify-center"
-                    style={{ background: `${item.accentColor.replace(")", " / 0.15)")}`, borderColor: item.accentColor.replace(")", " / 0.4)") }}
+                    className="absolute left-0 top-1 w-7 h-7 rounded-full border border-border/40 flex items-center justify-center bg-card"
+                    style={{ boxShadow: `0 0 12px ${item.accentColor.replace(")", " / 0.3)")}` }}
                   >
-                    <Icon className="w-3.5 h-3.5" style={{ color: item.accentColor }} />
+                    <Icon className="w-3.5 h-3.5 text-foreground/70" />
                   </motion.div>
 
                   {/* Content */}

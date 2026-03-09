@@ -150,8 +150,8 @@ export function TechStackSection() {
                   {/* Card header */}
                   <div className="flex items-center gap-3 mb-5">
                     <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${cat.accent} p-0.5`}>
-                      <div className="w-full h-full rounded-[10px] bg-card flex items-center justify-center">
-                        <CatIcon className="w-5 h-5" style={{ color: `var(--cat-glow)`.replace("/ 0.25)", "/ 1)").replace("var(--cat-glow)", cat.glowVar.replace("/ 0.25", "")) }} />
+                  <div className="w-full h-full rounded-[10px] bg-card flex items-center justify-center">
+                        <CatIcon className="w-5 h-5 text-foreground/80" />
                       </div>
                     </div>
                     <div>
