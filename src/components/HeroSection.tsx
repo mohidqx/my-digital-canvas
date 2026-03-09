@@ -3,6 +3,7 @@ import { Github, Linkedin, Twitter, Mail, Download, ArrowDown, Shield } from "lu
 import { mockProfile, mockStats } from "@/lib/mockData";
 import mohidAvatar from "@/assets/mohid-avatar.png";
 import { useState, useEffect } from "react";
+import { HeroParticles } from "@/components/HeroParticles";
 
 const ROLES = [
   "Certified Ethical Hacker",
