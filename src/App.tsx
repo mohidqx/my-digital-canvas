@@ -7,6 +7,8 @@ import { AuthProvider } from "@/hooks/useAuth";
 import { ProtectedRoute } from "@/components/ProtectedRoute";
 import { GhostChatPortal } from "@/components/ghost/GhostChatPortal";
 import { ThemeProvider } from "@/lib/theme";
+import { BackToTop } from "@/components/BackToTop";
+import { CursorSpotlight } from "@/components/CursorSpotlight";
 import Index from "./pages/Index";
 import LoginPage from "./pages/Login";
 import AdminPage from "./pages/Admin";
