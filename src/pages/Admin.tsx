@@ -32,7 +32,7 @@ import { countryCodeToFlag } from "@/lib/flagEmoji";
 import { supabase } from "@/integrations/supabase/client";
 import { mockProjects } from "@/lib/mockData";
 import type { Project } from "@/lib/schemas";
-import { addDocument, deleteDocument } from "@/lib/firebase";
+// Firebase removed — project management uses local state only
 
 // ── Form Schema ───────────────────────────────────────────────────────────────
 const adminProjectSchema = z.object({
