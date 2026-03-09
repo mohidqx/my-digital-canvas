@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Code2, ExternalLink } from "lucide-react";
+import { Menu, X, Code2, ExternalLink, Sun, Moon } from "lucide-react";
+import { useTheme } from "@/lib/theme";
 
 const navLinks = [
   { href: "#projects",   label: "Projects"   },
