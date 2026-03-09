@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Code2, ExternalLink, Sun, Moon } from "lucide-react";
 import { useTheme } from "@/lib/theme";
+import { useScrollProgress } from "@/hooks/useScrollProgress";
 
 const navLinks = [
   { href: "#projects",   label: "Projects"   },
