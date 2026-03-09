@@ -335,7 +335,7 @@ function ProjectsTab() {
         featured: data.featured ?? false, order: data.order ?? projects.length,
         createdAt: new Date().toISOString(),
       };
-      try { await addDocument("projects", newProject); } catch {}
+      try { /* firebase removed — local state only */ void newProject; } catch {}
       if (editTarget) setProjects((prev) => prev.map((p) => p.id === editTarget.id ? newProject : p));
       else setProjects((prev) => [newProject, ...prev]);
       setSubmitState("success");
