@@ -89,12 +89,12 @@ export default function BugBountyPage() {
   const onSubmit = async (data: FormData) => {
     setLoading(true);
     try {
-      const { error } = await supabase.from("bug_reports").insert({
+      const insertPayload = {
         reporter_name: data.reporter_name,
         reporter_contact: data.reporter_contact,
         title: data.title,
-        severity: data.severity,
-        category: data.category,
+        severity: data.severity as string,
+        category: data.category as string,
         cvss_score: data.cvss_score ?? null,
         affected_url: data.affected_url || null,
         description: data.description,
@@ -103,7 +103,8 @@ export default function BugBountyPage() {
         actual_behavior: data.actual_behavior || null,
         proof_of_concept: data.proof_of_concept || null,
         status: "open",
-      });
+      };
+      const { error } = await supabase.from("bug_reports").insert(insertPayload as Parameters<ReturnType<typeof supabase.from>["insert"]>[0]);
       if (error) throw error;
       setSubmitted(true);
     } catch (err) {
