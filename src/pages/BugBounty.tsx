@@ -90,20 +90,20 @@ export default function BugBountyPage() {
     setLoading(true);
     try {
       const { error } = await supabase.from("bug_reports").insert({
-        reporter_name: data.reporter_name,
-        reporter_contact: data.reporter_contact,
         title: data.title,
+        description: data.description,
         severity: data.severity,
         category: data.category,
         cvss_score: data.cvss_score ?? null,
         affected_url: data.affected_url || null,
-        description: data.description,
         steps_to_reproduce: data.steps_to_reproduce,
         expected_behavior: data.expected_behavior || null,
         actual_behavior: data.actual_behavior || null,
         proof_of_concept: data.proof_of_concept || null,
-        status: "open" as const,
-      } satisfies import("@/integrations/supabase/types").TablesInsert<"bug_reports">);
+        // Store reporter info in notes since reporter_name/contact aren't DB columns
+        notes: `Reporter: ${data.reporter_name} | Contact: ${data.reporter_contact}`,
+        status: "open",
+      });
       if (error) throw error;
       setSubmitted(true);
     } catch (err) {
