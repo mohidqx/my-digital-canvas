@@ -394,7 +394,7 @@ export function GhostChatPortal() {
               </span>
               <span className="ml-auto flex items-center gap-2">
                 <Lock className="w-3 h-3 text-secondary/60" />
-                <span>{user ? `● ${user.email?.split("@")[0].toUpperCase()}` : "○ OFFLINE"}</span>
+                <span>{user ? `● ${myCodename}` : "○ OFFLINE"}</span>
               </span>
             </div>
           </motion.div>
