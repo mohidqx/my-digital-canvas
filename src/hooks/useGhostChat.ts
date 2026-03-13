@@ -74,7 +74,7 @@ export type GhostRoom = {
   created_at: string;
 };
 
-export function useGhostChat(roomId: string | null, userId: string | null) {
+export function useGhostChat(roomId: string | null, userId: string | null, inviteCode?: string | null) {
   const [messages, setMessages] = useState<GhostMessage[]>([]);
   const [members, setMembers] = useState<GhostMember[]>([]);
   const [typingUsers, setTypingUsers] = useState<string[]>([]);
