@@ -85,6 +85,7 @@ export function GhostChatPortal() {
 
   const handleSelectRoom = async (room: GhostRoom) => {
     setSelectedRoom(room);
+    setSelectedRoomInviteCode(room.invite_code);
     setUnreadCount(0);
     if (user) {
       // Try to get codename from membership record
