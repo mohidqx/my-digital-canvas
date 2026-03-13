@@ -104,6 +104,9 @@ export function GhostChatPortal() {
   };
 
   const handleSignOut = async () => {
+    if (user) {
+      localStorage.removeItem(`ghost_codename_${user.id}`);
+    }
     await supabase.auth.signOut();
     setUser(null);
     setSelectedRoom(null);
