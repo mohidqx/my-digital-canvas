@@ -28,6 +28,7 @@ export function GhostChatPortal() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedRoom, setSelectedRoom] = useState<GhostRoom | null>(null);
+  const [selectedRoomInviteCode, setSelectedRoomInviteCode] = useState<string | null>(null);
   const [myCodename, setMyCodename] = useState("GHOST");
   const [pulseCount, setPulseCount] = useState(0);
   const [soundEnabled, setSoundEnabled] = useState(true);
@@ -84,6 +85,7 @@ export function GhostChatPortal() {
 
   const handleSelectRoom = async (room: GhostRoom) => {
     setSelectedRoom(room);
+    setSelectedRoomInviteCode(room.invite_code);
     setUnreadCount(0);
     if (user) {
       // Try to get codename from membership record
@@ -356,6 +358,7 @@ export function GhostChatPortal() {
                               roomId={selectedRoom.id}
                               roomName={selectedRoom.name}
                               userId={user.id}
+                              inviteCode={selectedRoomInviteCode}
                             />
                           ) : (
                             <ChatEmptyState onSwitchToBugBounty={() => setActiveTab("bugbounty")} />
