@@ -69,7 +69,17 @@ export function GhostChatPortal() {
   }, [isOpen, user]);
 
   const handleAuthenticated = (userId: string) => {
-    setUser({ id: userId } as User);
+    // Re-fetch the full session so we get a proper User object
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (session?.user) {
+        setUser(session.user);
+        // Restore codename from localStorage
+        const saved = localStorage.getItem(`ghost_codename_${session.user.id}`);
+        if (saved) setMyCodename(saved);
+      } else {
+        setUser({ id: userId } as User);
+      }
+    });
   };
 
   const handleSelectRoom = async (room: GhostRoom) => {
