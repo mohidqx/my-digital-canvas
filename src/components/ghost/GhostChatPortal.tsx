@@ -358,6 +358,7 @@ export function GhostChatPortal() {
                               roomId={selectedRoom.id}
                               roomName={selectedRoom.name}
                               userId={user.id}
+                              inviteCode={selectedRoomInviteCode}
                             />
                           ) : (
                             <ChatEmptyState onSwitchToBugBounty={() => setActiveTab("bugbounty")} />
