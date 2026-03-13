@@ -28,6 +28,7 @@ export function GhostChatPortal() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedRoom, setSelectedRoom] = useState<GhostRoom | null>(null);
+  const [selectedRoomInviteCode, setSelectedRoomInviteCode] = useState<string | null>(null);
   const [myCodename, setMyCodename] = useState("GHOST");
   const [pulseCount, setPulseCount] = useState(0);
   const [soundEnabled, setSoundEnabled] = useState(true);
