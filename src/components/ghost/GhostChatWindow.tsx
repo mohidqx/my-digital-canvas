@@ -2,7 +2,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Send, Paperclip, Smile, Trash2, Reply, Copy, ShieldAlert,
-  Clock, CheckCheck, X, Hash, ImageIcon, FileText,
+  Clock, CheckCheck, Check, X, Hash, ImageIcon, FileText,
   Terminal, Wifi, WifiOff, Users, ChevronDown, Search,
   Pin, Edit3, Download, Forward, Star, Volume2, VolumeX,
   Code, Bold, Italic, AlertCircle, ZoomIn, Maximize,
