@@ -716,9 +716,18 @@ export function GhostChatWindow({ roomId, roomName, userId, inviteCode, onClose 
 
   useEffect(() => {
     markOnline(true);
-    return () => { markOnline(false); };
+    const interval = setInterval(() => markOnline(true), 30000); // heartbeat every 30s
+    return () => { markOnline(false); clearInterval(interval); };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [roomId]);
+
+  // Mark messages as read when viewing
+  useEffect(() => {
+    if (!loading && messages.length > 0) {
+      markAllAsRead();
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [messages.length, loading]);
 
   useEffect(() => {
     if (!showScrollDown) {
