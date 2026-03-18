@@ -619,17 +619,29 @@ function RoomItem({
             exit={{ opacity: 0, height: 0 }}
             className="overflow-hidden mx-2 mb-1"
           >
-            <div className="flex items-center gap-2 px-3 py-2 rounded-xl bg-secondary/5 border border-secondary/20">
-              <span className="text-xs text-muted-foreground font-mono flex-1 tracking-widest">{room.invite_code}</span>
+            <div className="space-y-2 px-3 py-2 rounded-xl bg-secondary/5 border border-secondary/20">
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-muted-foreground font-mono flex-1 tracking-widest">{room.invite_code}</span>
+                <button
+                  onClick={(e) => onCopy(room.invite_code, e)}
+                  className="text-muted-foreground hover:text-secondary transition-colors flex-shrink-0"
+                  title="Copy invite code"
+                >
+                  {copiedCode === room.invite_code ? (
+                    <Check className="w-3.5 h-3.5 text-secondary" />
+                  ) : (
+                    <Copy className="w-3.5 h-3.5" />
+                  )}
+                </button>
+              </div>
               <button
-                onClick={(e) => onCopy(room.invite_code, e)}
-                className="text-muted-foreground hover:text-secondary transition-colors flex-shrink-0"
-                title="Copy invite code"
+                onClick={(e) => onCopyLink(room.invite_code, e)}
+                className="w-full flex items-center justify-center gap-1.5 py-1.5 rounded-lg bg-primary/10 border border-primary/20 text-xs font-mono font-bold text-primary hover:bg-primary/20 transition-colors"
               >
-                {copiedCode === room.invite_code ? (
-                  <Check className="w-3.5 h-3.5 text-secondary" />
+                {copiedCode === "link_" + room.invite_code ? (
+                  <><Check className="w-3 h-3" /> LINK COPIED</>
                 ) : (
-                  <Copy className="w-3.5 h-3.5" />
+                  <><Link className="w-3 h-3" /> COPY INVITE LINK</>
                 )}
               </button>
             </div>
