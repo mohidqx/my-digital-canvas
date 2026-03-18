@@ -51,6 +51,19 @@ export function GhostRoomList({ userId, selectedRoomId, onSelectRoom, onSignOut,
   const [showInviteFor, setShowInviteFor] = useState<string | null>(null);
   const [confirmLeave, setConfirmLeave] = useState<string | null>(null);
   const [emojiPickerFor, setEmojiPickerFor] = useState<string | null>(null);
+  const defaultChannelCreated = useRef(false);
+
+  // Auto-create default GENERAL channel if user has no rooms
+  useEffect(() => {
+    if (defaultChannelCreated.current) return;
+    if (rooms.length === 0 && userId && myCodename && myCodename !== "GHOST") {
+      defaultChannelCreated.current = true;
+      const savedCodename = localStorage.getItem(`ghost_codename_${userId}`) || myCodename;
+      createRoom("GENERAL", "Default channel — welcome to Ghost Protocol", savedCodename).then((room) => {
+        if (room) onSelectRoom(room);
+      });
+    }
+  }, [rooms.length, userId, myCodename]);
 
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();

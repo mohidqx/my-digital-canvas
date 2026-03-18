@@ -187,9 +187,9 @@ export function GhostChatPortal() {
             }`}
             style={{
               ...(isMaximized ? {} : { width: currentSize.w, height: currentSize.h }),
-              background: "hsl(0 0% 4%)",
-              border: "1px solid hsl(261 87% 50% / 0.2)",
-              boxShadow: "0 0 60px hsl(261 87% 50% / 0.12), 0 30px 80px rgba(0,0,0,0.8)",
+              background: "hsl(0 0% 2%)",
+              border: "1px solid hsl(261 87% 50% / 0.15)",
+              boxShadow: "0 0 60px hsl(261 87% 50% / 0.1), 0 30px 80px rgba(0,0,0,0.9)",
             }}
           >
             {/* Title bar */}
