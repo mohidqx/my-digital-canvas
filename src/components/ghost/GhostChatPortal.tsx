@@ -375,7 +375,7 @@ export function GhostChatPortal() {
             {/* Status bar */}
             <div
               className="px-4 py-1.5 flex items-center gap-3 text-xs font-mono text-muted-foreground border-t border-border/15 flex-shrink-0"
-              style={{ background: "hsl(0 0% 3.5%)" }}
+              style={{ background: "hsl(0 0% 2%)" }}
             >
               <span className="flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ background: statusColor }} />
