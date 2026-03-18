@@ -195,7 +195,7 @@ export function GhostChatPortal() {
             {/* Title bar */}
             <div
               className="flex items-center gap-3 px-4 py-2.5 flex-shrink-0 border-b border-border/20 select-none"
-              style={{ background: "hsl(0 0% 5%)" }}
+              style={{ background: "hsl(0 0% 3%)" }}
             >
               {/* Traffic lights */}
               <div className="flex items-center gap-1.5 flex-shrink-0">
