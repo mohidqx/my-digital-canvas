@@ -341,7 +341,7 @@ export function GhostChatPortal() {
                         {/* Sidebar */}
                         <div
                           className="w-52 flex-shrink-0 border-r border-border/20 flex flex-col"
-                          style={{ background: "hsl(0 0% 5%)" }}
+                          style={{ background: "hsl(0 0% 3%)" }}
                         >
                           <GhostRoomList
                             userId={user.id}
