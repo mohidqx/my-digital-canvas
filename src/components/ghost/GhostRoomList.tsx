@@ -261,6 +261,7 @@ export function GhostRoomList({ userId, selectedRoomId, onSelectRoom, onSignOut,
                 onSelect={() => onSelectRoom(room)}
                 onHover={(id) => setHoveredRoom(id)}
                 onCopy={copyInvite}
+                onCopyLink={copyInviteLink}
                 onMute={toggleMute}
                 onFav={toggleFav}
                 onShowInvite={(id, e) => { e.stopPropagation(); setShowInviteFor(showInviteFor === id ? null : id); }}
