@@ -455,7 +455,7 @@ export function GhostRoomList({ userId, selectedRoomId, onSelectRoom, onSignOut,
 // Room item component
 function RoomItem({
   room, membership, isSelected, isHovered, isMuted, isFav, copiedCode,
-  showInvite, confirmLeave, emojiPickerOpen, onSelect, onHover, onCopy, onMute, onFav, onShowInvite,
+  showInvite, confirmLeave, emojiPickerOpen, onSelect, onHover, onCopy, onCopyLink, onMute, onFav, onShowInvite,
   onLeave, onConfirmLeave, onCancelLeave, onEmojiPicker, onEmojiSelect, isCreator,
 }: {
   room: GhostRoom;
@@ -471,6 +471,7 @@ function RoomItem({
   onSelect: () => void;
   onHover: (id: string | null) => void;
   onCopy: (code: string, e?: React.MouseEvent) => void;
+  onCopyLink: (code: string, e?: React.MouseEvent) => void;
   onMute: (id: string, e: React.MouseEvent) => void;
   onFav: (id: string, e: React.MouseEvent) => void;
   onShowInvite: (id: string, e: React.MouseEvent) => void;
